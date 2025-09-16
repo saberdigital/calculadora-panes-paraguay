@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Costos - Panes Sin Gluten</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🧮 Calculadora de Costos y Precio de Venta</h1>
+        <p>Para tus panes sin gluten - ¡En Guaraníes (₲)!</p>
+
+        <div class="form-group">
+            <label for="receta">Selecciona tu receta:</label>
+            <select id="receta" onchange="actualizarIngredientes()">
+                <option value="">-- Elige una receta --</option>
+                <option value="basico">Pan Básico</option>
+                <option value="avena">Pan de Avena</option>
+                <option value="almendras">Pan de Almendras</option>
+                <option value="platano">Pan de Plátano</option>
+                <option value="avena_manzana">Pan de Avena y Manzana</option>
+            </select>
+        </div>
+
+        <div id="ingredientes-container" style="display: none;">
+            <h2>Ingresa los precios de tus ingredientes (₲ por kg o ₲ por L)</h2>
+            <div id="lista-ingredientes">
+                <!-- Los ingredientes se cargarán aquí dinámicamente -->
+            </div>
+
+            <h2>Costos Indirectos (Opcional)</h2>
+            <div class="form-group">
+                <label for="energia">Energía eléctrica (por horneada):</label>
+                <input type="number" id="energia" value="0" min="0" step="100">
+            </div>
+            <div class="form-group">
+                <label for="envases">Envases / Empaques:</label>
+                <input type="number" id="envases" value="0" min="0" step="100">
+            </div>
+            <div class="form-group">
+                <label for="otros">Otros gastos:</label>
+                <input type="number" id="otros" value="0" min="0" step="100">
+            </div>
+
+            <h2>Margen de Ganancia Deseado</h2>
+            <div class="form-group">
+                <label for="margen">Porcentaje de ganancia (%):</label>
+                <input type="number" id="margen" value="50" min="0" max="300" step="5">
+            </div>
+
+            <button onclick="calcular()" class="btn-calcular">🧮 CALCULAR</button>
+        </div>
+
+        <div id="resultados" style="display: none;">
+            <h2>📊 Resultados</h2>
+            <div class="resultado">
+                <strong>Costo Total de Ingredientes:</strong> <span id="costo-ingredientes">₲ 0</span>
+            </div>
+            <div class="resultado">
+                <strong>Costo Total de Producción:</strong> <span id="costo-produccion">₲ 0</span>
+            </div>
+            <div class="resultado">
+                <strong>Precio de Venta Sugerido:</strong> <span id="precio-venta">₲ 0</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
