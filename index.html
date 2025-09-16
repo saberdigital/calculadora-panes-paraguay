@@ -11,57 +11,94 @@
         <h1>🧮 Calculadora de Costos y Precio de Venta</h1>
         <p>Para tus panes sin gluten - ¡En Guaraníes (₲)!</p>
 
-        <div class="form-group">
-            <label for="receta">Selecciona tu receta:</label>
-            <select id="receta" onchange="actualizarIngredientes()">
-                <option value="">-- Elige una receta --</option>
-                <option value="basico">Pan Básico</option>
-                <option value="avena">Pan de Avena</option>
-                <option value="almendras">Pan de Almendras</option>
-                <option value="platano">Pan de Plátano</option>
-                <option value="avena_manzana">Pan de Avena y Manzana</option>
-            </select>
-        </div>
+        <div class="main-content">
+            <div class="calculator-section">
+                <div class="form-group">
+                    <label for="receta">Selecciona tu receta:</label>
+                    <select id="receta" onchange="actualizarIngredientes()">
+                        <option value="">-- Elige una receta --</option>
+                        <option value="basico">Pan Básico</option>
+                        <option value="avena">Pan de Avena</option>
+                        <option value="almendras">Pan de Almendras</option>
+                        <option value="platano">Pan de Plátano</option>
+                        <option value="avena_manzana">Pan de Avena y Manzana</option>
+                    </select>
+                </div>
 
-        <div id="ingredientes-container" style="display: none;">
-            <h2>Ingresa los precios de tus ingredientes (₲ por kg o ₲ por L)</h2>
-            <div id="lista-ingredientes">
-                <!-- Los ingredientes se cargarán aquí dinámicamente -->
+                <div id="ingredientes-container" style="display: none;">
+                    <h2>Ingresa los precios de tus ingredientes (₲ por kg o ₲ por L)</h2>
+                    <div id="lista-ingredientes">
+                        <!-- Los ingredientes se cargarán aquí dinámicamente -->
+                    </div>
+
+                    <h2>Costos Indirectos (Opcional)</h2>
+                    <div class="form-group">
+                        <label for="energia">Energía eléctrica (por horneada):</label>
+                        <input type="number" id="energia" value="0" min="0" step="100">
+                    </div>
+                    <div class="form-group">
+                        <label for="envases">Envases / Empaques:</label>
+                        <input type="number" id="envases" value="0" min="0" step="100">
+                    </div>
+                    <div class="form-group">
+                        <label for="otros">Otros gastos:</label>
+                        <input type="number" id="otros" value="0" min="0" step="100">
+                    </div>
+
+                    <h2>Margen de Ganancia Deseado</h2>
+                    <div class="form-group">
+                        <label for="margen">Porcentaje de ganancia (%):</label>
+                        <input type="number" id="margen" value="50" min="0" max="300" step="5">
+                    </div>
+
+                    <button onclick="calcular()" class="btn-calcular">🧮 CALCULAR</button>
+                </div>
+
+                <div id="resultados" style="display: none;">
+                    <h2>📊 Resultados</h2>
+                    <div class="resultado">
+                        <strong>Costo Total de Ingredientes:</strong> <span id="costo-ingredientes">₲ 0</span>
+                    </div>
+                    <div class="resultado">
+                        <strong>Costo Total de Producción:</strong> <span id="costo-produccion">₲ 0</span>
+                    </div>
+                    <div class="resultado">
+                        <strong>Precio de Venta Sugerido:</strong> <span id="precio-venta">₲ 0</span>
+                    </div>
+                </div>
             </div>
 
-            <h2>Costos Indirectos (Opcional)</h2>
-            <div class="form-group">
-                <label for="energia">Energía eléctrica (por horneada):</label>
-                <input type="number" id="energia" value="0" min="0" step="100">
-            </div>
-            <div class="form-group">
-                <label for="envases">Envases / Empaques:</label>
-                <input type="number" id="envases" value="0" min="0" step="100">
-            </div>
-            <div class="form-group">
-                <label for="otros">Otros gastos:</label>
-                <input type="number" id="otros" value="0" min="0" step="100">
-            </div>
+            <div class="tutorial-section">
+                <div class="tutorial">
+                    <h3>💡 ¿Cómo usar esta calculadora?</h3>
+                    <p><strong>1. Elige tu receta</strong></p>
+                    <p>Selecciona en el menú la receta de pan sin gluten que quieres preparar.</p>
 
-            <h2>Margen de Ganancia Deseado</h2>
-            <div class="form-group">
-                <label for="margen">Porcentaje de ganancia (%):</label>
-                <input type="number" id="margen" value="50" min="0" max="300" step="5">
-            </div>
+                    <p><strong>2. Ingresa el precio de cada ingrediente</strong></p>
+                    <p>Escribe cuánto te cuesta CADA ingrediente en tu ciudad o mercado. Por ejemplo:</p>
+                    <ul>
+                        <li>Harina de arroz: 8.000 ₲ por kg</li>
+                        <li>Huevos: 12.000 ₲ por kg</li>
+                        <li>Aceite de oliva: 15.000 ₲ por litro</li>
+                    </ul>
+                    <p>¡No te preocupes! La calculadora ya sabe cuántos gramos usa cada receta.</p>
 
-            <button onclick="calcular()" class="btn-calcular">🧮 CALCULAR</button>
-        </div>
+                    <p><strong>3. Agrega otros gastos (si quieres)</strong></p>
+                    <p>¿Usas electricidad para hornear? ¿Compras envases bonitos? Pon aquí ese costo extra.</p>
 
-        <div id="resultados" style="display: none;">
-            <h2>📊 Resultados</h2>
-            <div class="resultado">
-                <strong>Costo Total de Ingredientes:</strong> <span id="costo-ingredientes">₲ 0</span>
-            </div>
-            <div class="resultado">
-                <strong>Costo Total de Producción:</strong> <span id="costo-produccion">₲ 0</span>
-            </div>
-            <div class="resultado">
-                <strong>Precio de Venta Sugerido:</strong> <span id="precio-venta">₲ 0</span>
+                    <p><strong>4. Decide cuánto quieres ganar</strong></p>
+                    <p>Si quieres ganar un 50% más de lo que te costó hacer el pan, escribe "50".</p>
+
+                    <p><strong>5. Haz clic en "CALCULAR"</strong></p>
+                    <p>¡Y listo! La calculadora te dirá:</p>
+                    <ul>
+                        <li>Lo que te costó hacer el pan.</li>
+                        <li>El precio al que debes venderlo para ganar lo que quieres.</li>
+                    </ul>
+
+                    <p><strong>✨ ¡Así de fácil! Ahora puedes vender tu pan sin gluten con confianza y sin perder dinero.</strong></p>
+                    <p><em>Hecho con cariño para mamás y emprendedoras que cuidan a su familia con el corazón.</em></p>
+                </div>
             </div>
         </div>
     </div>
